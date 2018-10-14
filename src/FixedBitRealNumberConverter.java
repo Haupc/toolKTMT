@@ -17,20 +17,31 @@ public class FixedBitRealNumberConverter extends OneComplementConverter {
         return kq;
     }
     public String decToBin(double dec, int bitForNguyen, int bitForThapPhan) {
+        boolean isNegative = (dec < 0);
+        if(isNegative) dec = -dec;
         long phanNguyen = (long) dec;
         double phanThapPhan = dec - phanNguyen;
-        String kq = addLeadingZero(decToBin(phanNguyen), bitForNguyen);
+        String kq = decToBin(phanNguyen, bitForNguyen);
         for (int i = 0; i < bitForThapPhan; i++){
             phanThapPhan *= 2;
             long du = (long) phanThapPhan;
             phanThapPhan -= du;
             kq += du;
         }
-        if(dec < 0){
-            kq = reverseBit(kq);
-            kq = addOne(kq);
-        }
+        if(!isNegative) return kq;
+        kq = reverseBit(kq);
+        kq = addOne(kq);
         return kq;
+        /*
+        //String kq = addLeadingZero(decToBin(phanNguyen), bitForNguyen);
+        String kq = new TwoComplementConverter().decToBin(phanNguyen, bitForNguyen);
+        String thapPhanInString = "";
+
+        if(dec < 0){
+            thapPhanInString = reverseBit(kq);
+            thapPhanInString = addOne(kq);
+        }
+        return kq+thapPhanInString;*/
     }
     public String subOne(String bin){
         char[] inChar = bin.toCharArray();
@@ -46,14 +57,15 @@ public class FixedBitRealNumberConverter extends OneComplementConverter {
     }
 
     public String binToDec(String bin, int bitForNguyen, int bitForTP){
-        if(bin.charAt(0) == '1'){
+        boolean isNegative = bin.charAt(0) == '1';
+        if(isNegative){
             bin = subOne(bin);
+            bin = reverseBit(bin);
+
         }
         String phanNguyen = bin.substring(0, bitForNguyen);
         String phanTP = bin.substring(bitForNguyen);
-        String kq = super.binToDec(phanNguyen);
-        kq += ".";
-        phanTP = reverseBit(phanTP);
+        String kq = new unsignedIntConvert().binToDec(phanNguyen);
         double dTP = 0.0, toMul = 1.0;
         int i = 0;
         while (i < phanTP.length()){
@@ -63,7 +75,20 @@ public class FixedBitRealNumberConverter extends OneComplementConverter {
             }
             i++;
         }
+        kq += ".";
         kq += Double.toString(dTP).substring(2);
+        if(isNegative){
+            return "-" + kq;
+        }
         return kq;
+        /*if(bin.charAt(0) == '1'){
+
+        }
+
+
+        kq += ".";
+        phanTP = reverseBit(phanTP);
+
+        return kq;*/
     }
 }

@@ -19,8 +19,8 @@ public class signBitIntConverter extends unsignedIntConvert
         boolean isNegative = (bin.charAt(0) == '1');
         StringBuilder kqtoStr = new StringBuilder(bin);
         kqtoStr.replace(0, 1, "0");
-        String kq = super.binToDec(bin);
-        if(isNegative) kq = "-" + kqtoStr;
-        return kqtoStr.toString();
+        String kq = super.binToDec(kqtoStr.toString());
+        if(isNegative) kq = "-" + kq;
+        return kq;
     }
 }
