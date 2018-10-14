@@ -153,11 +153,10 @@ public class ConverterControler implements Initializable {
     public void processRealNumber(){
         if(RInputType.getValue().equals("BIN")){
             if(ROutputType.getValue().equals("FIXED BIT")){
-                RInputText.setText(fixedBitRealNumberConverter.binToDec(RInputText.getText(), Integer.parseInt(bitNguyen.getText()), Integer.parseInt(bitThapPhan.getText())));
+                ROutputText.setText(fixedBitRealNumberConverter.binToDec(RInputText.getText(), Integer.parseInt(bitNguyen.getText()), Integer.parseInt(bitThapPhan.getText())));
             }
-            else {
-                ROutputText.setText(fixedBitRealNumberConverter.decToBin(Double.parseDouble(RInputText.getText()), Integer.parseInt(bitNguyen.getText()), Integer.parseInt(bitThapPhan.getText())));
-            }
+        } else {
+            ROutputText.setText(fixedBitRealNumberConverter.decToBin(Double.parseDouble(RInputText.getText()), Integer.parseInt(bitNguyen.getText()), Integer.parseInt(bitThapPhan.getText())));
         }
     }
     @Override
@@ -176,8 +175,8 @@ public class ConverterControler implements Initializable {
                 }
             }
         });
-        UIInputType.itemsProperty().addListener((observable, oldValue, newValue) -> processUnsignedInt());
-        UIOutputType.itemsProperty().addListener((observable, oldValue, newValue) -> processUnsignedInt());
+        UIInputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processUnsignedInt());
+        UIOutputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processUnsignedInt());
 
         IInputText.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -187,8 +186,8 @@ public class ConverterControler implements Initializable {
                 }
             }
         });
-        IInputType.itemsProperty().addListener((observable, oldValue, newValue) -> processInt());
-        IOutputType.itemsProperty().addListener((observable, oldValue, newValue) -> processInt());
+        IInputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processInt());
+        IOutputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processInt());
 
         RInputText.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -198,8 +197,7 @@ public class ConverterControler implements Initializable {
                 }
             }
         });
-        RInputType.itemsProperty().addListener((observable, oldValue, newValue) -> processRealNumber());
-        ROutputType.itemsProperty().addListener((observable, oldValue, newValue) -> processRealNumber());
+        RInputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processRealNumber());
+        ROutputType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> processRealNumber());
     }
-
 }

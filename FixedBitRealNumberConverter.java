@@ -48,11 +48,11 @@ public class FixedBitRealNumberConverter extends OneComplementConverter {
             bin = subOne(bin);
         }
         String phanNguyen = bin.substring(0, bitForNguyen);
-        String phanTP = bin.substring(bitForNguyen, bitForTP);
-        String kq = super.binToDec(bin);
+        String phanTP = bin.substring(bitForNguyen);
+        String kq = super.binToDec(phanNguyen);
         kq += ".";
         phanTP = reverseBit(phanTP);
-        double dTP = 0, toMul = 1.0;
+        double dTP = 0.0, toMul = 1.0;
         int i = 0;
         while (i < phanTP.length()){
             toMul /= 2;
