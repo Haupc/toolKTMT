@@ -1,3 +1,5 @@
+package src;
+
 public class FixedBitRealNumberConverter extends OneComplementConverter {
     public String addOne(String bin){
         char[] inChar = bin.toCharArray();

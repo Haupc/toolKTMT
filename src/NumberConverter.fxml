@@ -13,14 +13,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConverterControler">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ConverterControler">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TextArea editable="false" prefHeight="32.0" prefWidth="600.0" text="Số Nguyên Không Dấu">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số nguyên không dấu">
                <font>
                   <Font size="17.0" />
-               </font></TextArea>
+               </font>
+            </Text>
             <AnchorPane prefHeight="46.0" prefWidth="600.0">
                <children>
                   <Text layoutX="126.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input" wrappingWidth="27.896484375" />
